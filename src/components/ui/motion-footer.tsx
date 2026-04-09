@@ -198,6 +198,7 @@ export function CinematicFooter() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [formData, setFormData] = useState({ name: '', email: '' });
   const [accessLevel, setAccessLevel] = useState<'granted' | 'queued' | null>(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -250,6 +251,7 @@ export function CinematicFooter() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
     if (!formData.name || !formData.email) return;
     
     setFormState('submitting');
@@ -268,12 +270,12 @@ export function CinematicFooter() {
         setAccessLevel(data.status); // 'granted' or 'queued'
         setFormState('success');
       } else {
-        alert(data.error || "An error occurred");
+        setErrorMessage(data.error || "An error occurred");
         setFormState('idle');
       }
     } catch(err) {
       console.error("Backend error:", err);
-      alert("Uh oh! The waitlist server is currently down. Are you running the backend server?");
+      setErrorMessage("Waitlist server is offline.");
       setFormState('idle');
     }
   };
@@ -327,7 +329,16 @@ export function CinematicFooter() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="footer-glass-pill p-8 md:p-10 rounded-3xl flex flex-col gap-5 w-full">
+                <form onSubmit={handleSubmit} className="footer-glass-pill p-8 md:p-10 rounded-3xl flex flex-col gap-5 w-full relative">
+                  {errorMessage && (
+                    <div className="absolute -top-4 md:-top-5 left-1/2 -translate-x-1/2 bg-[#2a0e0e]/90 border border-red-500/30 text-red-500 px-4 py-2 my-2 rounded-full text-[10px] md:text-xs font-bold tracking-wide uppercase shadow-[0_0_20px_rgba(239,68,68,0.2)] flex items-center gap-2 whitespace-nowrap z-20 backdrop-blur-md">
+                       <span className="relative flex h-2 w-2">
+                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                         <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                       </span>
+                       {errorMessage}
+                    </div>
+                  )}
                   <div className="space-y-1.5 focus-within:text-white text-zinc-400 transition-colors">
                     <label className="text-xs font-semibold tracking-wider ml-1 uppercase">Name</label>
                     <input 
