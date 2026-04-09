@@ -257,8 +257,8 @@ export function CinematicFooter() {
     setFormState('submitting');
     
     try {
-      // Connect to our generated Express backend
-      const response = await fetch('http://localhost:3001/api/waitlist', {
+      // Connect to Vercel Serverless Function
+      const response = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
