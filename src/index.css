@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-dark: #0a0a0a;
+  --color-bg-darker: #050505;
+  --color-orange-core: #FF5A1F;
+  --color-orange-glow: rgba(255, 90, 31, 0.5);
+  --color-border-glow: rgba(255, 90, 31, 0.2);
+  --font-inter: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--color-bg-dark);
+  color: #f3f4f6; /* gray-100 */
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utilities */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FF5A1F 0%, #ff8a5c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-orange {
+  background: linear-gradient(135deg, #FF5A1F 0%, #ff8a5c 100%);
+}
+
+.shadow-orange-glow {
+  box-shadow: 0 0 40px var(--color-orange-glow);
+}
+
+.shadow-orange-subtle {
+  box-shadow: 0 0 20px var(--color-border-glow);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Base resets */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for clean look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
