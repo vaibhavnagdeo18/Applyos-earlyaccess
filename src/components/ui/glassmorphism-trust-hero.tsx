@@ -127,7 +127,10 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="animate-fade-in delay-400 flex flex-col sm:flex-row gap-4">
-              <button className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A1F] to-[#ff8a5c] px-8 py-4 text-sm font-semibold text-white transition-all hover:scale-[1.02] shadow-[0_0_30px_rgba(255,90,31,0.25)] hover:shadow-[0_0_40px_rgba(255,90,31,0.4)] active:scale-[0.98]">
+              <button 
+                onClick={() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })}
+                className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FF5A1F] to-[#ff8a5c] px-8 py-4 text-sm font-semibold text-white transition-all hover:scale-[1.02] shadow-[0_0_30px_rgba(255,90,31,0.25)] hover:shadow-[0_0_40px_rgba(255,90,31,0.4)] active:scale-[0.98] cursor-pointer"
+              >
                 Start Applying Free
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
